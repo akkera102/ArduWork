@@ -438,10 +438,12 @@ void setup()
   /*Serial.print("EEPROM length: ");
   Serial.println(EEPROM.length());*/
   HighScoreEntry tScore;
-  int16_t address=ReadHighScore(tScore);
+  ReadHighScore(tScore);
+  highScore=tScore.score;
+/*
   if (address!=-1)
   {
-    /*char tInitials[4];
+    char tInitials[4];
     Serial.print("tScore.index=");
     Serial.println(tScore.index);
     Serial.print("tScore.stage=");
@@ -452,9 +454,10 @@ void setup()
     Serial.print("tScore.score=");
     Serial.println(tScore.score);
     Serial.print("tScore.crc=0x");
-    Serial.println(tScore.crc,HEX);*/
+    Serial.println(tScore.crc,HEX);
     highScore=tScore.score;
   }
+*/
   sound.tones(story);
 }
 
@@ -631,13 +634,13 @@ void loop() {
         {
           highScore=score;
           HighScoreEntry tScore;
-          uint16_t lastGood=ReadHighScore(tScore);
+//          uint16_t lastGood=ReadHighScore(tScore);
           tScore.initials[0]='A';
           tScore.initials[1]='S';
           tScore.initials[2]='T';
           tScore.stage=stage;
           tScore.score=score;          
-          WriteHighScore(lastGood,tScore);
+          WriteHighScore(tScore);
         }
       }
       break;
@@ -827,8 +830,3 @@ void loop() {
   }
   return;  
 }
-
-
-
-
-

@@ -1082,10 +1082,10 @@ void drawHighScoreEntryCursor(byte pos) {
 // Store the high score table in EEPROM, set initial data if none present.
 void persistHighScoreTable(bool firstTime) {  
   for (byte i = 0; i < 27; i++) {
-    EEPROM.write(i + 2, highScoreTable[i]);
+    EEPROM.write(EEPROM_STORAGE_SPACE_START + i + 2, highScoreTable[i]);
     if (firstTime) {
       // Also write to the reset location starting at 29
-      EEPROM.write(i + 29, highScoreTable[i]);
+      EEPROM.write(EEPROM_STORAGE_SPACE_START + i + 29, highScoreTable[i]);
     }
   }
 }
@@ -1096,7 +1096,7 @@ void resetHighScoreTable() {
   // with data frem reset location
   
   for (byte i = 0; i < 27; i++) {
-    highScoreTable[i] = EEPROM.read(i + 29);
+    highScoreTable[i] = EEPROM.read(EEPROM_STORAGE_SPACE_START + i + 29);
   }
 
   persistHighScoreTable(false);
@@ -1111,16 +1111,16 @@ void setup() {
   arduboy.beginNoLogo();
     
   // Check for hi scores in EEPROM
-  if (EEPROM.read(0) == 254) {
+  if (EEPROM.read(EEPROM_STORAGE_SPACE_START + 0) == 254) {
     // Scores were in EEPROM
     for (byte i = 0; i < 27; i++) {
-      highScoreTable[i] = EEPROM.read(i + 2);
+      highScoreTable[i] = EEPROM.read(EEPROM_STORAGE_SPACE_START + i + 2);
     }
   } else {
     persistHighScoreTable(true);
 
     // And write initial signature
-    EEPROM.write(0, 254);
+    EEPROM.write(EEPROM_STORAGE_SPACE_START + 0, 254);
   }
  
   introScreen();

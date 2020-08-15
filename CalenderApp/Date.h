@@ -119,7 +119,7 @@ class Date {
         return;
 
       // clear all
-      for (uint16_t i = EEPROM_STORAGE_SPACE_START; i < EEPROM_STORAGE_SPACE_START + 1024; i++) {
+      for (uint16_t i = EEPROM_STORAGE_SPACE_START; i < 1024; i++) {
         EEPROM.update(i, 0x00);
       }
 

@@ -182,15 +182,15 @@ void toggleMute()
   {
     check = true;
     mute = false;
-    EEPROM.put(0, check);
-    EEPROM.put(20, mute);
+    EEPROM.put(EEPROM_STORAGE_SPACE_START + 0, check);
+    EEPROM.put(EEPROM_STORAGE_SPACE_START + 20, mute);
   }
   else
   {
     check = true;
     mute = true;
-    EEPROM.put(0, check);
-    EEPROM.put(20, mute);
+    EEPROM.put(EEPROM_STORAGE_SPACE_START + 0, check);
+    EEPROM.put(EEPROM_STORAGE_SPACE_START + 20, mute);
   }
   loadMenu();
   mainMenu();
@@ -294,21 +294,21 @@ void loadMenu()
 bool checkData()
 {
   bool myCheck;
-  EEPROM.get(0, myCheck);
+  EEPROM.get(EEPROM_STORAGE_SPACE_START + 0, myCheck);
   return myCheck;
 }
 
 bool getMute()
 {
   bool myMute;
-  EEPROM.get(20, myMute);
+  EEPROM.get(EEPROM_STORAGE_SPACE_START + 20, myMute);
   return myMute;
 }
 
 int getHiScore()
 {
   int myHiScore;
-  EEPROM.get(1, myHiScore);
+  EEPROM.get(EEPROM_STORAGE_SPACE_START + 1, myHiScore);
   return myHiScore;
 }
 
@@ -316,8 +316,8 @@ void newHiScore()
 {
   check = true;
   hiScore = score;
-  EEPROM.put(0, check);
-  EEPROM.put(1, hiScore);
+  EEPROM.put(EEPROM_STORAGE_SPACE_START + 0, check);
+  EEPROM.put(EEPROM_STORAGE_SPACE_START + 1, hiScore);
   a.setCursor(2,38);
   a.print("New High Score!");
 }
@@ -327,8 +327,8 @@ void clearData()
   check = true;
   hiScore = 0;
   cY = 0;
-  EEPROM.put(0, check);
-  EEPROM.put(1, hiScore);
+  EEPROM.put(EEPROM_STORAGE_SPACE_START + 0, check);
+  EEPROM.put(EEPROM_STORAGE_SPACE_START + 1, hiScore);
   a.clear();
   a.setTextSize(3);
   a.setCursor(2,5);

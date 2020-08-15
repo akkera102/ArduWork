@@ -1,7 +1,7 @@
 #include "global.h"
 #include "song.h"
 
-#define EEPROM_SONG_START 10
+#define EEPROM_SONG_START EEPROM_STORAGE_SPACE_START
 
 struct SONG song;
 struct SONG *_song = &song;

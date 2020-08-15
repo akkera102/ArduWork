@@ -5,7 +5,7 @@
 #define OFFSET_LEFT       3
 
 #define EEPROM_NO_ENTRY   0
-#define EEPROM_NOTES_MAX  50
+#define EEPROM_NOTES_MAX  45
 #define EEPROM_BLOCK_SIZE 18
 
 bool keyInEEPROM = true;
